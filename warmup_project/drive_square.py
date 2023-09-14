@@ -5,6 +5,7 @@ from rclpy.node import Node
 from geometry_msgs.msg import Twist
 import math
 
+ACC_ERROR = 0.09 # Account for acceleration and deceleration
 
 class DrawSquareNode(Node):
     def __init__(self):
@@ -22,7 +23,10 @@ class DrawSquareNode(Node):
                 self.drive_forward(0.5, distance=1)
                 print("turning left")
                 self.turn_left_deg(1.0, degrees=90.0)
-        self.square_done = True
+            self.square_done = True
+        else:
+            self.drive(0.0, 0.0)
+            return
 
     def drive(self, linear_vel, angular_vel):
         """ Send a drive command to the robot """
@@ -35,7 +39,7 @@ class DrawSquareNode(Node):
         """ Turn left using drive """
         self.drive(0.0, angular_vel)
         turn_radians = (degrees * math.pi) / 180.0
-        sleep(turn_radians / angular_vel + 0.09)
+        sleep(turn_radians / angular_vel + ACC_ERROR)
         self.drive(0.0, 0.0)
     
     def drive_forward(self, linear_vel, distance):

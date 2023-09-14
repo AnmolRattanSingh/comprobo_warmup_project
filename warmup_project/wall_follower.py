@@ -4,6 +4,7 @@ from geometry_msgs.msg import Twist
 from nav_msgs.msg import Odometry
 from sensor_msgs.msg import LaserScan
 from time import sleep
+import time
 import math
 
 
@@ -25,7 +26,7 @@ class WallFollowNode(Node):
     def scan_callback(self, msg):
         self.scan = msg
     
-    def run_loop(self):
+    def run_loop2(self):
         # Check if scan messages are available
         if self.scan is not None:
             # Get the distances to the left and right walls
@@ -52,33 +53,43 @@ class WallFollowNode(Node):
                 # Turn anticlockwise
                 self.turn_left_deg(1.0, 2)
     
-    def run_loop2(self):
+    def run_loop(self):
         # Check if scan messages are available
+        # print system time
+        # print("time: ", time.perf_counter())
         if self.scan is not None:
             # Get the distances to the left and right walls
             fd = self.scan.ranges[0]
             d1 = self.scan.ranges[45]
             d2 = self.scan.ranges[135]
-            bd = self.scan.ranges[180]
+            # bd = self.scan.ranges[180]
             
             theta = math.acos((d1+d2)/math.sqrt(2*(d1**2+d2**2)))
             # turn amount theta
             # turn left
             # theta into degrees
             theta = (theta * 180) / math.pi
+            print("theta: ", theta)
+            print(f"({fd}, {d1}, {d2})")
             
-            if bd < 1:
-                self.drive_forward(0.5, 1)
-            elif fd < 1:
+            if fd < 1:
                 self.turn_left_deg(-1.0, 90)
                 sleep(2)
+                if theta > 5:
+                    if d1 < d2:
+                        self.turn_left_deg(-1.0, theta)
+                    else:
+                        self.turn_left_deg(1.0, theta)
+                    sleep(2)
             elif theta > 5:
                 print("theta: ", theta)
-                self.turn_left_deg(1.0, theta)
+                if d1 < d2:
+                    self.turn_left_deg(-1.0, theta)
+                else:
+                    self.turn_left_deg(1.0, theta)
                 sleep(2)
             else:
-                self.drive_forward(0.5, 1)
-                sleep(2)
+                self.drive_forward(0.5, 0.5)
     
     def turn_left_deg(self, angular_vel, degrees):
         ACC_CONST = 0.0
