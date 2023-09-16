@@ -33,15 +33,31 @@ class PersonDetectionNode(Node):
     def on_scan(self, msg):
         self.get_lidar_coords(msg)
         if self.scan:
-            lidar_centroid = np.array(self.scan).mean(axis=0)
-            self.person_dist = np.sqrt(np.sum(lidar_centroid ** 2))
-            self.person_angle = math.atan2(lidar_centroid[1], lidar_centroid[0])
+            cx_sum = 0.0
+            cy_sum = 0.0
+            total_weight = 0.0
+            
+            for coords in self.scan:
+                distance = np.sqrt(np.sum(np.array(coords) ** 2))
+                weight = 1.0 / (distance**2 + 1.0)  # Higher weight for points closer to the origin
+                
+                cx_sum += coords[0] * weight
+                cy_sum += coords[1] * weight
+                total_weight += weight
 
-            if lidar_centroid[0] < 0:
-                self.person_angle = -self.person_angle
-                self.person_dist = -self.person_dist
+            if total_weight > 0.0:
+                cx = cx_sum / total_weight
+                cy = cy_sum / total_weight
 
-            print(self.person_dist, self.person_angle)
+                self.person_dist = np.sqrt(cx**2 + cy**2)
+                self.person_angle = math.atan2(cy, cx)
+
+                if cx < 0:
+                    self.person_angle = -self.person_angle
+                    self.person_dist = -self.person_dist
+
+                print(self.person_dist, self.person_angle)
+
 
     def run_loop(self):
         if self.person_dist is not None:
