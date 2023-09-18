@@ -6,12 +6,6 @@ The objective of this project was to acquire a foundational grasp of ROS (Robot 
 
 ## Robot Behavior
 
-### Teleop
-
-#### Behavior
-
-The teleop node allows the user to control the robot using the keyboard. The robot can be moved forward, backward, and rotated left and right. The robot will continue to move in the direction of the last key pressed until another key is pressed. The robot will stop moving when the emergency stop key is pressed. Since we started with implementing this node, the main challenge was to get familiar with moving the neato. Our first approach was to simply publish to the `cmd_vel` topic and sleep for a fixed duration. 
-
 ### Drive in a Square
 
 #### Behavior
@@ -54,3 +48,85 @@ Tried to check angle 135 and 45 first and make them equal distance to try and fo
 
 Drive square tried first with timed driving and turns. Added random sleep times first 1, 0.5s. Then realized need to do math for turning time. Then realized exact math not ideal since it takes
 some time to accelerate. Then added random constant about 0.09 to account for that. Better solution could be used. Teleop was pretty easy to implement. Have a goal to make it record key holds and do video game like driving mechanics.
+
+## Obstacle Avoidance
+
+#### Behavior
+
+The Obstacle Avoider node enables the robot to autonomously navigate while avoiding obstacles. The robot moves forward until it detects an obstacle within a certain range. Upon detection, the robot halts, pivots in place, and then proceeds in the direction that offers the most open space.
+
+#### Implementation
+
+1. Run Loop (`run_loop`):
+
+    - The primary logic resides here. The robot's behavior is primarily dictated by a series of flags that keep track of its current state (e.g., avoiding, turning).
+    - Laser scan data is continuously analyzed to check for obstacles. When an obstacle is detected, the robot is programmed to turn either left or right based on the available space. 
+    
+2. Dynamic Avoidance (`avoid`):
+
+    - This function begins the avoidance process, and is passed the direction that the robot will be avoiding the obstacle.
+    
+3. Movement Functions:
+
+    - `drive` and `turn_degrees` functions control the robot's linear and angular movements.
+    - These functions are versatile, allowing for varying speeds and turn angles, providing the robot with a good range of motion.
+
+## Person Follower
+
+#### Behavior
+
+The Person Follower node allows the robot to track and follow a person based on lidar data. The robot continuously updates its distance via P-control (of PID fame) and angle relative to the person and adjusts its path to maintain a certain distance.
+
+#### Implementation
+
+1. Run Loop (`run_loop`):
+
+    - Here, the robot employs a simple proportional control strategy to manage its speed and turning radius based on the detected distance and angle to the person.
+    - The robot will stop if it loses track of the person.
+    
+2. Data Processing (`get_lidar_coords` and `on_scan`):
+
+    - These functions process the raw lidar data to extract meaningful information.
+    - The `on_scan` function calculates the centroid of the lidar points and updates the robot's internal state regarding the person's position.
+
+3. Movement Function (`drive`):
+
+    - This function is responsible for the robot's linear and angular movement, and it's called within the main loop to adjust the robot's path dynamically.
+
+## Wall Follower
+
+#### Behavior
+
+The Wall Follower node is designed to have the robot follow along a wall at a consistent distance. It uses lidar scan data to get into an optimal distance and angle relative to the wall.
+
+#### Implementation
+
+1. Run Loop (`run_loop`):
+
+    - This is the core of the wall-following logic. The robot's behavior is determined by interpreting lidar scan data and odom readings.
+    - In the bang-bang implementation, depending on the distances detected on the sides and front of the robot, it adjusts its speed and turning radius to maintain a consistent distance from the wall.
+    
+2. Turning and Driving (`turn_left_deg` and `drive_forward`):
+
+    - These functions control the robot's angular and linear movements.
+    - They are more simplified than in other nodes but serve the purpose of wall following well.
+
+## Teleop
+
+#### Behavior
+
+The teleop node allows the user to control the robot using the keyboard. The robot can be moved forward, backward, and rotated left and right. The robot will continue to move in the direction of the last key pressed until another key is pressed. The robot will stop moving when the emergency stop key is pressed. Since we started with implementing this node, the main challenge was to get familiar with moving the neato. Our first approach was to simply publish to the `cmd_vel` topic and sleep for a fixed duration. 
+
+#### Implementation
+
+1. Run Loop (`run_loop`):
+
+    - This loop captures keyboard inputs in real-time and maps them to specific movements of the robot.
+    - The robot responds almost instantly to keyboard inputs, offering a smooth control experience.
+    
+2. Movement Function (`drive`):
+
+    - As in other nodes, this function manages the robot's movement by publishing Twist messages based on the input received.
+    - The function is called within the main loop to adjust the robot's path dynamically based on the operator's commands.
+
+    

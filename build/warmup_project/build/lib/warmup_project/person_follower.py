@@ -1,4 +1,3 @@
-
 """ This script explores publishing ROS messages in ROS using Python """
 from time import sleep
 import rclpy
@@ -12,12 +11,8 @@ DIST_THRESHOLD = 1.0
 
 class PersonDetectionNode(Node):
     def __init__(self):
-        """
-        Initializes the ROS node, sets up a timer for the run_loop, and sets up 
-        publishers and subscribers. Initializes variables for storing lidar scans 
-        and person detection data.
-        """
         super().__init__('send_message_node')
+        # Create a timer that fires ten times per second
         timer_period = 0.1
         self.timer = self.create_timer(timer_period, self.run_loop)
         self.vel_publisher = self.create_publisher(Twist, 'cmd_vel', 10)
@@ -25,11 +20,8 @@ class PersonDetectionNode(Node):
         self.person_angle = None
         self.person_dist = None
         self.scan = None
-
+    
     def get_lidar_coords(self, msg):
-        """
-        Processes the lidar scan data to extract coordinate points based on lidar readings.
-        """
         theta = 0
         self.scan = []
         for distance in msg.ranges:
@@ -37,59 +29,51 @@ class PersonDetectionNode(Node):
                 range_coords = (math.cos(theta) * distance, math.sin(theta) * distance)
                 self.scan.append(range_coords)
             theta += msg.angle_increment
-
+    
     def on_scan(self, msg):
-        """
-        Callback function for the lidar subscriber. Gets lidar coordinates, 
-        calculates the centroid, and updates person detection variables.
-        """
         self.get_lidar_coords(msg)
         if self.scan:
             lidar_centroid = np.array(self.scan).mean(axis=0)
             self.person_dist = np.sqrt(np.sum(lidar_centroid ** 2))
             self.person_angle = math.atan2(lidar_centroid[1], lidar_centroid[0])
+
             if lidar_centroid[0] < 0:
                 self.person_angle = -self.person_angle
                 self.person_dist = -self.person_dist
+
             print(self.person_dist, self.person_angle)
 
     def run_loop(self):
-        """
-        Main loop that controls the robot's movement. Uses proportional control 
-        to follow the person based on the detected distance and angle.
-        """
         if self.person_dist is not None:
-            Kp_linear = 0.7
-            Kp_angular = 1.0
-            error_linear = self.person_dist - DIST_THRESHOLD
-            error_angular = self.person_angle
-            linear_vel = Kp_linear * error_linear
-            angular_vel = Kp_angular * error_angular
+            # Person is too far away, use proportional control to drive towards them
+            Kp_linear = 0.7  # Proportional gain for linear velocity
+            Kp_angular = 1.0  # Proportional gain for angular velocity
+            error_linear = self.person_dist - DIST_THRESHOLD  # Error is the distance between the robot and the person
+            error_angular = self.person_angle  # Error is the angle between the robot and the person
+            linear_vel = Kp_linear * error_linear  # Calculate the linear velocity proportional to the error
+            angular_vel = Kp_angular * error_angular  # Calculate the angular velocity proportional to the error
             print(linear_vel, angular_vel)
             self.drive(linear_vel=linear_vel, angular_vel=angular_vel)
             print("moving")
+            
         else:
+            # No person detected, stop driving
             self.drive(linear_vel=0.0, angular_vel=0.0)
             print("no person")
 
     def drive(self, linear_vel, angular_vel):
-        """
-        Publishes a Twist message to control the robot's linear and angular velocity.
-        """
+        """ Send a drive command to the robot """
         msg = Twist()
         msg.linear.x = linear_vel
         msg.angular.z = angular_vel
         self.vel_publisher.publish(msg)
 
 def main(args=None):
-    """
-    Initializes ROS, creates the node, and spins it until shutdown.
-    """
-    rclpy.init(args=args)
-    node = PersonDetectionNode()
-    rclpy.spin(node)
-    node.destroy_node()
-    rclpy.shutdown()
+    rclpy.init(args=args)      # Initialize communication with ROS
+    node = PersonDetectionNode()   # Create our Node
+    rclpy.spin(node)           # Run the Node until ready to shutdown
+    node.destroy_node()        # Cleanup resources
+    rclpy.shutdown()           # cleanup
 
 if __name__ == '__main__':
     main()

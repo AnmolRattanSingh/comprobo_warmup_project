@@ -1,0 +1,53 @@
+running egg_info
+creating build/warmup_project/warmup_project.egg-info
+writing build/warmup_project/warmup_project.egg-info/PKG-INFO
+writing dependency_links to build/warmup_project/warmup_project.egg-info/dependency_links.txt
+writing entry points to build/warmup_project/warmup_project.egg-info/entry_points.txt
+writing requirements to build/warmup_project/warmup_project.egg-info/requires.txt
+writing top-level names to build/warmup_project/warmup_project.egg-info/top_level.txt
+writing manifest file 'build/warmup_project/warmup_project.egg-info/SOURCES.txt'
+reading manifest file 'build/warmup_project/warmup_project.egg-info/SOURCES.txt'
+writing manifest file 'build/warmup_project/warmup_project.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/sam/ros2_ws/src/comprobo_warmup_project/build/warmup_project/build
+creating /home/sam/ros2_ws/src/comprobo_warmup_project/build/warmup_project/build/lib
+creating /home/sam/ros2_ws/src/comprobo_warmup_project/build/warmup_project/build/lib/warmup_project
+copying warmup_project/__init__.py -> /home/sam/ros2_ws/src/comprobo_warmup_project/build/warmup_project/build/lib/warmup_project
+copying warmup_project/teleop.py -> /home/sam/ros2_ws/src/comprobo_warmup_project/build/warmup_project/build/lib/warmup_project
+copying warmup_project/obstacle_avoider.py -> /home/sam/ros2_ws/src/comprobo_warmup_project/build/warmup_project/build/lib/warmup_project
+copying warmup_project/person_follower.py -> /home/sam/ros2_ws/src/comprobo_warmup_project/build/warmup_project/build/lib/warmup_project
+copying warmup_project/wall_follower.py -> /home/sam/ros2_ws/src/comprobo_warmup_project/build/warmup_project/build/lib/warmup_project
+copying warmup_project/drive_square.py -> /home/sam/ros2_ws/src/comprobo_warmup_project/build/warmup_project/build/lib/warmup_project
+running install
+/usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+  warnings.warn(
+running install_lib
+creating /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/python3.10/site-packages/warmup_project
+copying /home/sam/ros2_ws/src/comprobo_warmup_project/build/warmup_project/build/lib/warmup_project/__init__.py -> /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/python3.10/site-packages/warmup_project
+copying /home/sam/ros2_ws/src/comprobo_warmup_project/build/warmup_project/build/lib/warmup_project/teleop.py -> /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/python3.10/site-packages/warmup_project
+copying /home/sam/ros2_ws/src/comprobo_warmup_project/build/warmup_project/build/lib/warmup_project/obstacle_avoider.py -> /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/python3.10/site-packages/warmup_project
+copying /home/sam/ros2_ws/src/comprobo_warmup_project/build/warmup_project/build/lib/warmup_project/person_follower.py -> /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/python3.10/site-packages/warmup_project
+copying /home/sam/ros2_ws/src/comprobo_warmup_project/build/warmup_project/build/lib/warmup_project/wall_follower.py -> /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/python3.10/site-packages/warmup_project
+copying /home/sam/ros2_ws/src/comprobo_warmup_project/build/warmup_project/build/lib/warmup_project/drive_square.py -> /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/python3.10/site-packages/warmup_project
+byte-compiling /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/python3.10/site-packages/warmup_project/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/python3.10/site-packages/warmup_project/teleop.py to teleop.cpython-310.pyc
+byte-compiling /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/python3.10/site-packages/warmup_project/obstacle_avoider.py to obstacle_avoider.cpython-310.pyc
+byte-compiling /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/python3.10/site-packages/warmup_project/person_follower.py to person_follower.cpython-310.pyc
+byte-compiling /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/python3.10/site-packages/warmup_project/wall_follower.py to wall_follower.cpython-310.pyc
+byte-compiling /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/python3.10/site-packages/warmup_project/drive_square.py to drive_square.cpython-310.pyc
+running install_data
+creating /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/share/ament_index
+creating /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/share/ament_index/resource_index
+creating /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/share/ament_index/resource_index/packages
+copying resource/warmup_project -> /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/share/ament_index/resource_index/packages
+copying package.xml -> /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/share/warmup_project
+running install_egg_info
+Copying build/warmup_project/warmup_project.egg-info to /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/python3.10/site-packages/warmup_project-0.0.0-py3.10.egg-info
+running install_scripts
+Installing drive_square script to /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/warmup_project
+Installing obstacle_avoider script to /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/warmup_project
+Installing person_follower script to /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/warmup_project
+Installing teleop script to /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/warmup_project
+Installing wall_follower script to /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/warmup_project
+writing list of installed files to '/home/sam/ros2_ws/src/comprobo_warmup_project/build/warmup_project/install.log'

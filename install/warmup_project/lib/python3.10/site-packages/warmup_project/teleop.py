@@ -7,19 +7,15 @@ from rclpy.node import Node
 from geometry_msgs.msg import Twist
 
 class Teleop(Node):
+
     def __init__(self):
-        """
-        Initializes the ROS node, sets up a timer for the run_loop, and creates 
-        a publisher for velocity commands. It also sets terminal settings to get keyboard inputs.
-        """
         super().__init__('teleop_node')
         timer_period = 0.1
         self.timer = self.create_timer(timer_period, self.run_loop)
         self.vel_publisher = self.create_publisher(Twist, 'cmd_vel', 10)
         self.timer = self.create_timer(0.1, self.run_loop)
         self.settings = termios.tcgetattr(sys.stdin)
-
-    
+        self.key = None
 
     def getKey(self):
         tty.setraw(sys.stdin.fileno())
@@ -29,10 +25,6 @@ class Teleop(Node):
         return self.key
     
     def run_loop(self):
-        """
-        Main loop that reads keyboard inputs and sends the appropriate Twist 
-        message to control the robot.
-        """
         while self.key != '\x03':
             key = self.getKey()
             

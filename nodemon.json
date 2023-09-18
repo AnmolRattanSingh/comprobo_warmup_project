@@ -1,0 +1,16 @@
+{
+    "name": "warmup_project",
+    "ignore": [
+        "build/**",
+        "install/**",
+        "log/**"
+    ],
+    "watch": ["warmup_project/"],
+    "execMap": {
+        "": "ros2 run warmup_project"
+    },
+    "events": {
+        "restart": "ros2 service call /reset_world std_srvs/Empty && sleep 2"
+    },
+    "ext": "py"
+}

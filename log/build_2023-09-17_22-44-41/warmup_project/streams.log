@@ -1,0 +1,55 @@
+[0.796s] Invoking command in '/home/sam/ros2_ws/src/comprobo_warmup_project': PYTHONPATH=/home/sam/ros2_ws/src/comprobo_warmup_project/build/warmup_project/prefix_override:/home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base build/warmup_project build --build-base /home/sam/ros2_ws/src/comprobo_warmup_project/build/warmup_project/build install --record /home/sam/ros2_ws/src/comprobo_warmup_project/build/warmup_project/install.log --single-version-externally-managed
+[1.064s] running egg_info
+[1.065s] creating build/warmup_project/warmup_project.egg-info
+[1.065s] writing build/warmup_project/warmup_project.egg-info/PKG-INFO
+[1.066s] writing dependency_links to build/warmup_project/warmup_project.egg-info/dependency_links.txt
+[1.066s] writing entry points to build/warmup_project/warmup_project.egg-info/entry_points.txt
+[1.066s] writing requirements to build/warmup_project/warmup_project.egg-info/requires.txt
+[1.066s] writing top-level names to build/warmup_project/warmup_project.egg-info/top_level.txt
+[1.066s] writing manifest file 'build/warmup_project/warmup_project.egg-info/SOURCES.txt'
+[1.068s] reading manifest file 'build/warmup_project/warmup_project.egg-info/SOURCES.txt'
+[1.069s] writing manifest file 'build/warmup_project/warmup_project.egg-info/SOURCES.txt'
+[1.069s] running build
+[1.069s] running build_py
+[1.070s] creating /home/sam/ros2_ws/src/comprobo_warmup_project/build/warmup_project/build
+[1.070s] creating /home/sam/ros2_ws/src/comprobo_warmup_project/build/warmup_project/build/lib
+[1.070s] creating /home/sam/ros2_ws/src/comprobo_warmup_project/build/warmup_project/build/lib/warmup_project
+[1.070s] copying warmup_project/__init__.py -> /home/sam/ros2_ws/src/comprobo_warmup_project/build/warmup_project/build/lib/warmup_project
+[1.070s] copying warmup_project/teleop.py -> /home/sam/ros2_ws/src/comprobo_warmup_project/build/warmup_project/build/lib/warmup_project
+[1.070s] copying warmup_project/obstacle_avoider.py -> /home/sam/ros2_ws/src/comprobo_warmup_project/build/warmup_project/build/lib/warmup_project
+[1.070s] copying warmup_project/person_follower.py -> /home/sam/ros2_ws/src/comprobo_warmup_project/build/warmup_project/build/lib/warmup_project
+[1.070s] copying warmup_project/wall_follower.py -> /home/sam/ros2_ws/src/comprobo_warmup_project/build/warmup_project/build/lib/warmup_project
+[1.070s] copying warmup_project/drive_square.py -> /home/sam/ros2_ws/src/comprobo_warmup_project/build/warmup_project/build/lib/warmup_project
+[1.070s] running install
+[1.071s] /usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[1.071s]   warnings.warn(
+[1.071s] running install_lib
+[1.072s] creating /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/python3.10/site-packages/warmup_project
+[1.072s] copying /home/sam/ros2_ws/src/comprobo_warmup_project/build/warmup_project/build/lib/warmup_project/__init__.py -> /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/python3.10/site-packages/warmup_project
+[1.072s] copying /home/sam/ros2_ws/src/comprobo_warmup_project/build/warmup_project/build/lib/warmup_project/teleop.py -> /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/python3.10/site-packages/warmup_project
+[1.072s] copying /home/sam/ros2_ws/src/comprobo_warmup_project/build/warmup_project/build/lib/warmup_project/obstacle_avoider.py -> /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/python3.10/site-packages/warmup_project
+[1.072s] copying /home/sam/ros2_ws/src/comprobo_warmup_project/build/warmup_project/build/lib/warmup_project/person_follower.py -> /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/python3.10/site-packages/warmup_project
+[1.072s] copying /home/sam/ros2_ws/src/comprobo_warmup_project/build/warmup_project/build/lib/warmup_project/wall_follower.py -> /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/python3.10/site-packages/warmup_project
+[1.072s] copying /home/sam/ros2_ws/src/comprobo_warmup_project/build/warmup_project/build/lib/warmup_project/drive_square.py -> /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/python3.10/site-packages/warmup_project
+[1.073s] byte-compiling /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/python3.10/site-packages/warmup_project/__init__.py to __init__.cpython-310.pyc
+[1.073s] byte-compiling /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/python3.10/site-packages/warmup_project/teleop.py to teleop.cpython-310.pyc
+[1.074s] byte-compiling /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/python3.10/site-packages/warmup_project/obstacle_avoider.py to obstacle_avoider.cpython-310.pyc
+[1.074s] byte-compiling /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/python3.10/site-packages/warmup_project/person_follower.py to person_follower.cpython-310.pyc
+[1.075s] byte-compiling /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/python3.10/site-packages/warmup_project/wall_follower.py to wall_follower.cpython-310.pyc
+[1.076s] byte-compiling /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/python3.10/site-packages/warmup_project/drive_square.py to drive_square.cpython-310.pyc
+[1.076s] running install_data
+[1.077s] creating /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/share/ament_index
+[1.077s] creating /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/share/ament_index/resource_index
+[1.078s] creating /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/share/ament_index/resource_index/packages
+[1.078s] copying resource/warmup_project -> /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/share/ament_index/resource_index/packages
+[1.078s] copying package.xml -> /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/share/warmup_project
+[1.078s] running install_egg_info
+[1.080s] Copying build/warmup_project/warmup_project.egg-info to /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/python3.10/site-packages/warmup_project-0.0.0-py3.10.egg-info
+[1.081s] running install_scripts
+[1.102s] Installing drive_square script to /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/warmup_project
+[1.102s] Installing obstacle_avoider script to /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/warmup_project
+[1.102s] Installing person_follower script to /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/warmup_project
+[1.102s] Installing teleop script to /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/warmup_project
+[1.102s] Installing wall_follower script to /home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/warmup_project
+[1.102s] writing list of installed files to '/home/sam/ros2_ws/src/comprobo_warmup_project/build/warmup_project/install.log'
+[1.123s] Invoked command in '/home/sam/ros2_ws/src/comprobo_warmup_project' returned '0': PYTHONPATH=/home/sam/ros2_ws/src/comprobo_warmup_project/build/warmup_project/prefix_override:/home/sam/ros2_ws/src/comprobo_warmup_project/install/warmup_project/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base build/warmup_project build --build-base /home/sam/ros2_ws/src/comprobo_warmup_project/build/warmup_project/build install --record /home/sam/ros2_ws/src/comprobo_warmup_project/build/warmup_project/install.log --single-version-externally-managed
