@@ -1,0 +1,35 @@
+
+Teleop keys:
+w: drive forward
+s: drive backward
+a: turn left
+d: turn right
+e: stop
+p: person follower
+o: obstacle avoider
+i: wall follower
+u: drive square
+.: stop child node
+
+driving forward
+driving backward
+turning right
+driving forward
+turning left
+driving forward
+turning right
+driving forward
+turning left
+driving forward
+turning right
+turning left
+driving forward
+turning right
+driving forward
+turning right
+driving forward
+turning right
+driving forward
+stopping
+invalid key, press h for help
+[ros2run]: Interrupt

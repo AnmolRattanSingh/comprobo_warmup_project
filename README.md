@@ -129,4 +129,8 @@ The teleop node allows the user to control the robot using the keyboard. The rob
     - As in other nodes, this function manages the robot's movement by publishing Twist messages based on the input received.
     - The function is called within the main loop to adjust the robot's path dynamically based on the operator's commands.
 
-    
+3. Child nodes
+
+    - To bring two functions together, we decided to allow teleop to start and stop our other drive nodes.
+    - It uses the `subprocess` module to run `ros2` with the module
+
