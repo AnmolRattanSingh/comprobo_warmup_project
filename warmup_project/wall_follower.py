@@ -40,13 +40,71 @@ class WallFollowNode(Node):
         """
         Main loop that controls the robot's behavior based on lidar scan and odometer readings.
         """
-        # Implementation here (truncated for brevity)
+        # Check if scan messages are available
+        # print system time
+        if self.scan is not None:
+            # Get the distances to the left and right walls
+            fd = self.scan.ranges[0]
+            d1 = self.scan.ranges[45]
+            d2 = self.scan.ranges[135]
+            # bd = self.scan.ranges[180]
+            
+            theta = math.acos((d1+d2)/math.sqrt(2*(d1**2+d2**2)))
+            # turn amount theta
+            # turn left
+            # theta into degrees
+            theta = (theta * 180) / math.pi
+            print("theta: ", theta)
+            print(f"({fd}, {d1}, {d2})")
+            
+            if fd < 1:
+                self.turn_left_deg(-1.0, 90)
+                sleep(2)
+                if theta > 5:
+                    if d1 < d2:
+                        self.turn_left_deg(-1.0, theta)
+                    else:
+                        self.turn_left_deg(1.0, theta)
+                    sleep(2)
+            elif theta > 5:
+                print("theta: ", theta)
+                if d1 < d2:
+                    self.turn_left_deg(-1.0, theta)
+                else:
+                    self.turn_left_deg(1.0, theta)
+                sleep(2)
+            else:
+                self.drive_forward(0.5, 0.5)
 
     def run_loop2(self):
         """
-        An alternative loop for control (though it seems this may be outdated or not used).
+        An alternative loop for control. Uses trigonometry to calculate the initial angle fix.
         """
-        # Implementation here (truncated for brevity)
+        # Check if scan messages are available
+        if self.scan is not None:
+            # Get the distances to the left and right walls
+            front_distance = self.scan.ranges[0]
+            left_distance = self.scan.ranges[45]
+            right_distance = self.scan.ranges[135]
+            
+            print("front distance: ", front_distance)
+            print("left distance: ", left_distance)
+            print("right distance: ", right_distance)
+            # Check if the robot is too close to the front wall
+            if front_distance < 1:
+                # Turn away from the wall
+                self.turn_left_deg(-1.0, 20)
+            # Check if the distances are equal
+            elif abs(left_distance - right_distance) < 0.5:
+                # Stop the robot
+                self.drive(0.5, 0.0)
+                sleep(0.2)
+            elif left_distance < right_distance:
+                # Turn clockwise
+                self.turn_left_deg(-1.0, 2)
+            else:
+                # Turn anticlockwise
+                self.turn_left_deg(1.0, 2)
 
     def turn_left_deg(self, angular_vel, degrees):
         """

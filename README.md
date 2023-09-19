@@ -105,11 +105,20 @@ The Wall Follower node is designed to have the robot follow along a wall at a co
 
     - This is the core of the wall-following logic. The robot's behavior is determined by interpreting lidar scan data and odom readings.
     - In the bang-bang implementation, depending on the distances detected on the sides and front of the robot, it adjusts its speed and turning radius to maintain a consistent distance from the wall.
-    
-2. Turning and Driving (`turn_left_deg` and `drive_forward`):
+
+2. Other implementation of Run Loop (`run_loop2`):
+
+    - This is an alternative implementation of the wall-following logic. 
+    - It uses trigonometry to calculate the angle between the robot and the wall and makes a precise alignment before moving forward.
+
+3. Turning and Driving (`turn_left_deg` and `drive_forward`):
 
     - These functions control the robot's angular and linear movements.
     - They are more simplified than in other nodes but serve the purpose of wall following well.
+
+#### Math for the implementation of Run Loop 2
+
+![Math](./math.jpg)
 
 ## Teleop
 
